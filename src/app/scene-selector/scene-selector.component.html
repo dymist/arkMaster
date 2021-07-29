@@ -1,0 +1,27 @@
+<h1 style="margin: auto; text-align: center;">Arkham</h1>
+<!-- <div>
+    <li *ngFor="let a of groupset">
+        {{a.id}}&nbsp;{{a.name}}
+    </li>
+</div>
+ -->
+ <!-- scene selector -->
+ <div *ngIf="!selectedScene">
+    <li style="text-align: center; background-color: lightgray; margin: 4px; padding: 2px;"
+     *ngFor="let a of sceneset" (click)="onSelectScene(a)">
+        {{a.name}}
+    </li>
+</div>
+<!-- neighboorhood selector -->
+<div *ngIf="sceneGroups">
+    <p></p>
+    <button style="margin: 5px; padding: 5px;"
+     *ngFor="let a of sceneGroups" (click)="onSelectGroup(a)">
+        {{a.name}}
+    </button>
+</div>
+<!-- myth selector -->
+<!-- clue -->
+<!-- gate -->
+<!-- doom -->
+<!-- panic -->
