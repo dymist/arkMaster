@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "arkmaster-d49e7": {
+      "hosting": {
+        "arkMaster": [
+          "arkmaster-d49e7"
+        ]
+      }
+    }
+  }
+}
