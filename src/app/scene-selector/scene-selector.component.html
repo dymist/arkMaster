@@ -5,6 +5,12 @@
     </li>
 </div>
  -->
+<!--  <div>
+    <li *ngFor="let a of sceneset">
+        {{a.name}}&nbsp;{{a.groups}}
+    </li>
+</div> -->
+
  <!-- scene selector -->
  <div *ngIf="!selectedScene">
     <li style="text-align: center; background-color: lightgray; margin: 4px; padding: 2px;"
@@ -13,7 +19,7 @@
     </li>
 </div>
 <!-- neighboorhood selector -->
-<div *ngIf="sceneGroups">
+<div *ngIf="sceneGroups&&!selectedGroup">
     <p></p>
     <button style="margin: 5px; padding: 5px;"
      *ngFor="let a of sceneGroups" (click)="onSelectGroup(a)">
@@ -21,7 +27,26 @@
     </button>
 </div>
 <!-- myth selector -->
+<div *ngIf="selectedScene">    
 <!-- clue -->
+<button style="margin: 5px; padding: 5px;" (click)="onClue()">CLUE</button>
 <!-- gate -->
+<button style="margin: 5px; padding: 5px;" (click)="onMyth(true)">GATE</button>
 <!-- doom -->
+<button style="margin: 5px; padding: 5px;" (click)="onMyth(false)">DOOM</button>
 <!-- panic -->
+<button *ngIf="scenePanic"
+style="margin: 5px; padding: 5px;" 
+(click)="onPanic()">PANIC</button>
+<!-- discard -->
+<button style="margin: 5px; padding: 5px;" (click)="onDiscard()">DISCARD</button>
+</div>
+<!-- card show -->
+<div *ngIf="selectedCard">
+    <p>{{selectedCard.id}}&nbsp;
+        {{selectedCard.groupId}}&nbsp;
+        {{selectedCard.sceneId}}
+    </p>
+    <button (click)="onRoll(true)">ok</button>
+    <button (click)="onRoll(false)">notok</button>
+</div>
