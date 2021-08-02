@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Caslon;
+    src: url(assets/Caslon.otf) format("opentype");
+}
+
+body{
+    font-family: 'Caslon';
+    background-color: #a6ab9f;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+div{
+    text-align: center;
+}
+
+/* neighboorhood buttons */
+.nbr {    
+    font-family: 'Caslon';
+    font-size: 200%;
+    width: fit-content;
+    height: 5rem;    
+    background-color: darkgray;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: .5rem;
+}
+/* all buttons */
+button{    
+    width: 8rem;
+    margin: 5px;
+    padding: 5px;
+    background: none;
+    border-style: none;
+}
+/* roll buttons */
+.roll{    
+    width: 8rem;
+    margin: 5px;
+    padding: 5px;
+    background: none;
+    border-style: none;
+}

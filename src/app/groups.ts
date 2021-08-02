@@ -16,7 +16,7 @@ export const GROUPS: Group[] =[
         {id:6,groupId:1,sceneId:0},
         {id:7,groupId:1,sceneId:0},
         {id:8,groupId:1,sceneId:0}
-    ]},
+    ], color:"#aec7ce"},
     {id: 2, name:'Исттаун', cards:[
         {id:9,groupId:2,sceneId:0},
         {id:10,groupId:2,sceneId:0},
@@ -26,7 +26,7 @@ export const GROUPS: Group[] =[
         {id:14,groupId:2,sceneId:0},
         {id:15,groupId:2,sceneId:0},
         {id:16,groupId:2,sceneId:0}
-    ]},
+    ], color:"#e5b088"},
     {id: 3, name:'Торговый район', cards:[
         {id:17,groupId:3,sceneId:0},
         {id:18,groupId:3,sceneId:0},
@@ -36,7 +36,7 @@ export const GROUPS: Group[] =[
         {id:22,groupId:3,sceneId:0},
         {id:23,groupId:3,sceneId:0},
         {id:24,groupId:3,sceneId:0}
-    ]},
+    ], color:"#b8c593"},
     {id: 4, name:'Нортсайд', cards:[
         {id:25,groupId:4,sceneId:0},
         {id:26,groupId:4,sceneId:0},
@@ -46,7 +46,7 @@ export const GROUPS: Group[] =[
         {id:30,groupId:4,sceneId:0},
         {id:31,groupId:4,sceneId:0},
         {id:32,groupId:4,sceneId:0}
-    ]},
+    ], color:"#d8a2ab"},
     {id: 5, name:'Аптаун', cards:[
         {id:33,groupId:5,sceneId:0},
         {id:34,groupId:5,sceneId:0},
@@ -56,7 +56,7 @@ export const GROUPS: Group[] =[
         {id:38,groupId:5,sceneId:0},
         {id:39,groupId:5,sceneId:0},
         {id:40,groupId:5,sceneId:0}
-    ]},
+    ], color:"#e4a899"},
     {id: 6, name:'Мискатоникский университет', cards:[
         {id:41,groupId:6,sceneId:0},
         {id:42,groupId:6,sceneId:0},
@@ -66,7 +66,7 @@ export const GROUPS: Group[] =[
         {id:46,groupId:6,sceneId:0},
         {id:47,groupId:6,sceneId:0},
         {id:48,groupId:6,sceneId:0}
-    ]},
+    ], color:"#aeab7f"},
     {id: 7, name:'Ривертаун', cards:[
         {id:49,groupId:7,sceneId:0},
         {id:50,groupId:7,sceneId:0},
@@ -76,7 +76,7 @@ export const GROUPS: Group[] =[
         {id:54,groupId:7,sceneId:0},
         {id:55,groupId:7,sceneId:0},
         {id:56,groupId:7,sceneId:0}
-    ]},
+    ], color:"#bc9ea9"},
     {id: 8, name:'Саутсайд', cards:[
         {id:57,groupId:8,sceneId:0},
         {id:58,groupId:8,sceneId:0},
@@ -86,7 +86,7 @@ export const GROUPS: Group[] =[
         {id:62,groupId:8,sceneId:0},
         {id:63,groupId:8,sceneId:0},
         {id:64,groupId:8,sceneId:0}
-    ]},
+    ], color:"#9ea6b8"},
     {id: 9, name:'Центр Кингспорта', cards:[
         {id:65,groupId:9,sceneId:0},
         {id:66,groupId:9,sceneId:0},
@@ -96,7 +96,7 @@ export const GROUPS: Group[] =[
         {id:70,groupId:9,sceneId:0},
         {id:71,groupId:9,sceneId:0},
         {id:72,groupId:9,sceneId:0}
-    ]},
+    ], color:"pink"},
     {id: 10, name:'Берег Инсмута', cards:[
         {id:73,groupId:10,sceneId:0},
         {id:74,groupId:10,sceneId:0},
@@ -106,7 +106,7 @@ export const GROUPS: Group[] =[
         {id:78,groupId:10,sceneId:0},
         {id:79,groupId:10,sceneId:0},
         {id:80,groupId:10,sceneId:0}
-    ]},
+    ], color:"green"},
     {id: 11, name:'Центр Инсмута', cards:[
         {id:81,groupId:11,sceneId:0},
         {id:82,groupId:11,sceneId:0},
@@ -116,7 +116,7 @@ export const GROUPS: Group[] =[
         {id:86,groupId:11,sceneId:0},
         {id:87,groupId:11,sceneId:0},
         {id:88,groupId:11,sceneId:0}
-    ]},
+    ], color:"yellow"},
     {id: 12, name:'Гавань Кингспорта', cards:[
         {id:89,groupId:12,sceneId:0},
         {id:90,groupId:12,sceneId:0},
@@ -126,7 +126,7 @@ export const GROUPS: Group[] =[
         {id:94,groupId:12,sceneId:0},
         {id:95,groupId:12,sceneId:0},
         {id:96,groupId:12,sceneId:0}
-    ]},
+    ], color:"pink"},
     {id: 13, name:'Улицы', cards:[
         {id:97,groupId:13,sceneId:0},
         {id:98,groupId:13,sceneId:0},
@@ -136,7 +136,7 @@ export const GROUPS: Group[] =[
         {id:102,groupId:13,sceneId:0},
         {id:103,groupId:13,sceneId:0},
         {id:104,groupId:13,sceneId:0}
-    ]},
+    ], color:"#b1a391"},
     {id: 14, name:'Пути сообщения', cards:[
         {id:105,groupId:14,sceneId:0},
         {id:106,groupId:14,sceneId:0},
@@ -146,7 +146,7 @@ export const GROUPS: Group[] =[
         {id:110,groupId:14,sceneId:0},
         {id:111,groupId:14,sceneId:0},
         {id:112,groupId:14,sceneId:0}
-    ]},
+    ], color:"#b1a391"},
     {id: 15, name:'Брешь во времени', cards:[
         {id:113,groupId:15,sceneId:0},
         {id:114,groupId:15,sceneId:0},
@@ -156,7 +156,7 @@ export const GROUPS: Group[] =[
         {id:118,groupId:15,sceneId:0},
         {id:119,groupId:15,sceneId:0},
         {id:120,groupId:15,sceneId:0}
-    ]},
+    ], color:"#dcd7b0"},
     {id: 16, name:'Прорастание Юггота', cards:[
         {id:121,groupId:16,sceneId:0},
         {id:122,groupId:16,sceneId:0},
@@ -166,7 +166,7 @@ export const GROUPS: Group[] =[
         {id:126,groupId:16,sceneId:0},
         {id:127,groupId:16,sceneId:0},
         {id:128,groupId:16,sceneId:0}
-    ]},
+    ], color:"#dcd7b0"},
     {id: 17, name:'Риф Дьявола', cards:[
         {id:129,groupId:17,sceneId:0},
         {id:130,groupId:17,sceneId:0},
@@ -176,7 +176,7 @@ export const GROUPS: Group[] =[
         {id:134,groupId:17,sceneId:0},
         {id:135,groupId:17,sceneId:0},
         {id:136,groupId:17,sceneId:0}
-    ]},
+    ], color:"black"},
     {id: 18, name:'Загадочный дом', cards:[
         {id:137,groupId:18,sceneId:0},
         {id:138,groupId:18,sceneId:0},
@@ -186,7 +186,7 @@ export const GROUPS: Group[] =[
         {id:142,groupId:18,sceneId:0},
         {id:143,groupId:18,sceneId:0},
         {id:144,groupId:18,sceneId:0}
-    ]},
+    ], color:"black"},
     {id: 19, name:'Видения Луны', cards:[
         {id:145,groupId:19,sceneId:0},
         {id:146,groupId:19,sceneId:0},
@@ -196,7 +196,7 @@ export const GROUPS: Group[] =[
         {id:150,groupId:19,sceneId:0},
         {id:151,groupId:19,sceneId:0},
         {id:152,groupId:19,sceneId:0}
-    ]},
+    ], color:"#dcd7b0"},
     {id: 20, name:'Вторжение кошмаров', cards:[
         {id:153,groupId:20,sceneId:0},
         {id:154,groupId:20,sceneId:0},
@@ -206,7 +206,7 @@ export const GROUPS: Group[] =[
         {id:158,groupId:20,sceneId:0},
         {id:159,groupId:20,sceneId:0},
         {id:160,groupId:20,sceneId:0}
-    ]},
+    ], color:"#dcd7b0"},
     {id: 21, name:'Разорванная реальность', cards:[
         {id:161,groupId:21,sceneId:0},
         {id:162,groupId:21,sceneId:0},
@@ -216,7 +216,7 @@ export const GROUPS: Group[] =[
         {id:166,groupId:21,sceneId:0},
         {id:167,groupId:21,sceneId:0},
         {id:168,groupId:21,sceneId:0}
-    ]},
+    ], color:"#dcd7b0"},
     {id: 201, name:'Газеты', cards:[
         {id:169,groupId:201,sceneId:0},
         {id:170,groupId:201,sceneId:0},
@@ -226,7 +226,7 @@ export const GROUPS: Group[] =[
         {id:174,groupId:201,sceneId:0},
         {id:175,groupId:201,sceneId:0},
         {id:176,groupId:201,sceneId:0}
-    ]},
+    ], color:"#bfa781"},
     {id: 202, name:'Пир хищников', cards:[
         {id:177,groupId:202,sceneId:0},
         {id:178,groupId:202,sceneId:0},
@@ -236,7 +236,7 @@ export const GROUPS: Group[] =[
         {id:182,groupId:202,sceneId:0},
         {id:183,groupId:202,sceneId:0},
         {id:184,groupId:202,sceneId:0}
-    ]},
+    ], color:"lightorange"},
     {id: 203, name:'Замерзший город', cards:[
         {id:185,groupId:203,sceneId:0},
         {id:186,groupId:203,sceneId:0},
@@ -246,7 +246,7 @@ export const GROUPS: Group[] =[
         {id:190,groupId:203,sceneId:0},
         {id:191,groupId:203,sceneId:0},
         {id:192,groupId:203,sceneId:0}
-    ]},        
+    ], color:"lightorange"},        
     {id: 101, name:'Пир для Умордхота', cards:[
         {id:193,groupId:1,sceneId:101},
         {id:194,groupId:2,sceneId:101},
@@ -256,7 +256,7 @@ export const GROUPS: Group[] =[
         {id:198,groupId:1,sceneId:101},
         {id:199,groupId:2,sceneId:101},
         {id:200,groupId:5,sceneId:101}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 102, name:'Пришествие Азатота', cards:[
         {id:201,groupId:1,sceneId:102},
         {id:202,groupId:2,sceneId:102},
@@ -266,7 +266,7 @@ export const GROUPS: Group[] =[
         {id:206,groupId:1,sceneId:102},
         {id:207,groupId:2,sceneId:102},
         {id:208,groupId:3,sceneId:102}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 103, name:'Завеса сумерек', cards:[
         {id:209,groupId:4,sceneId:103},
         {id:210,groupId:5,sceneId:103},
@@ -276,7 +276,7 @@ export const GROUPS: Group[] =[
         {id:214,groupId:4,sceneId:103},
         {id:215,groupId:5,sceneId:103},
         {id:216,groupId:6,sceneId:103}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 104, name:'Эхо из глубин', cards:[
         {id:217,groupId:1,sceneId:104},
         {id:218,groupId:3,sceneId:104},
@@ -286,7 +286,7 @@ export const GROUPS: Group[] =[
         {id:222,groupId:1,sceneId:104},
         {id:223,groupId:3,sceneId:104},
         {id:224,groupId:4,sceneId:104}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 105, name:'Дети Итакуа', cards:[
         {id:225,groupId:1,sceneId:105},
         {id:226,groupId:2,sceneId:105},
@@ -296,7 +296,7 @@ export const GROUPS: Group[] =[
         {id:230,groupId:1,sceneId:105},
         {id:231,groupId:2,sceneId:105},
         {id:232,groupId:4,sceneId:105}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 106, name:'Сны о Р\'льехе', cards:[
         {id:233,groupId:5,sceneId:106},
         {id:234,groupId:6,sceneId:106},
@@ -306,8 +306,8 @@ export const GROUPS: Group[] =[
         {id:238,groupId:6,sceneId:106},
         {id:239,groupId:7,sceneId:106},
         {id:240,groupId:8,sceneId:106}
-    ]},
-    {id: 107, name:'Безмолвие Цетхоггуа', cards:[
+    ], color:"#a6ab9f"},
+    {id: 107, name:'Безмолвие Цатхоггуа', cards:[
         {id:241,groupId:3,sceneId:107},
         {id:242,groupId:4,sceneId:107},
         {id:243,groupId:5,sceneId:107},
@@ -316,7 +316,7 @@ export const GROUPS: Group[] =[
         {id:246,groupId:3,sceneId:107},
         {id:247,groupId:4,sceneId:107},
         {id:248,groupId:5,sceneId:107}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 108, name:'Бледный фонарь', cards:[
         {id:249,groupId:1,sceneId:108},
         {id:250,groupId:3,sceneId:108},
@@ -326,7 +326,7 @@ export const GROUPS: Group[] =[
         {id:254,groupId:1,sceneId:108},
         {id:255,groupId:3,sceneId:108},
         {id:256,groupId:5,sceneId:108}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 109, name:'Тираны разрушения', cards:[
         {id:257,groupId:2,sceneId:109},
         {id:258,groupId:4,sceneId:109},
@@ -336,7 +336,7 @@ export const GROUPS: Group[] =[
         {id:262,groupId:4,sceneId:109},
         {id:263,groupId:6,sceneId:109},
         {id:264,groupId:8,sceneId:109}
-    ]},
+    ], color:"#a6ab9f"},
     {id: 110, name:'Выстрелы вслепую', cards:[
         {id:265,groupId:1,sceneId:110},
         {id:266,groupId:2,sceneId:110},
@@ -346,5 +346,5 @@ export const GROUPS: Group[] =[
         {id:270,groupId:1,sceneId:110},
         {id:271,groupId:2,sceneId:110},
         {id:272,groupId:3,sceneId:110}
-    ]}
+    ], color:"#a6ab9f"}
 ]

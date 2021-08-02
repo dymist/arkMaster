@@ -16,6 +16,7 @@ export class SceneSelectorComponent implements OnInit {
   groupset: Group[] = GROUPS;
   sceneset: Scene[] = SCENES;
   emptyCard: Card = {id:0,sceneId:0,groupId:0}
+  emptyGroup: Group = {id:0,name:'',cards:[],color:''}
   /* =====Current state====== */
   /* groups */
   sceneGroups?: Group[];
@@ -36,11 +37,7 @@ export class SceneSelectorComponent implements OnInit {
     var g: Group;
     this.selectedScene.groups.forEach((a) => {
       /* find group */
-      g = this.groupset.find((x) => x.id == a) || {
-        id: 0,
-        name: 'none',
-        cards: [],
-      };
+      g = this.groupset.find((x) => x.id == a) || this.emptyGroup;
       /* shuffle cards in group */
       this.shuffle(g.cards);
       /* add group in right place */
@@ -99,6 +96,7 @@ export class SceneSelectorComponent implements OnInit {
 
   onRoll(roll: boolean): void {
     /* myth, panic,new,discard - do nothing */
+    
     if (this.selectedGroup && this.selectedCard) {      
       if (this.selectedCard.sceneId > G_LIMIT_SCN) {
         /* clue from nbr + discard - shuffle in group */
@@ -114,6 +112,7 @@ export class SceneSelectorComponent implements OnInit {
           if (roll) {
             this.sceneGroups[a].cards.push(this.selectedCard);
           } else {
+            console.log(a);
             this.sceneGroups[a].cards.unshift(this.selectedCard);
           }
         }
@@ -125,10 +124,11 @@ export class SceneSelectorComponent implements OnInit {
   }
 
   getGroupIndex(c: Card): number{
+    var a: number=0;
     if(this.sceneGroups&&this.selectedGroup){
-      var a: number = this.sceneGroups.indexOf(this.selectedGroup) || 0;
+      a = this.sceneGroups.indexOf(this.selectedGroup) || 0;
     }    
-    return 0;
+    return a;
   }
 
   shuffleInTop(c: Card): void {

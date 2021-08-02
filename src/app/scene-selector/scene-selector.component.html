@@ -13,33 +13,34 @@
 
  <!-- scene selector -->
  <div *ngIf="!selectedScene">
-    <li style="text-align: center; background-color: lightgray; margin: 4px; padding: 2px;"
+    <button class="nbr"
      *ngFor="let a of sceneset" (click)="onSelectScene(a)">
         {{a.name}}
-    </li>
+ </button>
 </div>
 <!-- neighboorhood selector -->
-<div *ngIf="sceneGroups&&!selectedGroup">
-    <p></p>
-    <button style="margin: 5px; padding: 5px;"
-     *ngFor="let a of sceneGroups" (click)="onSelectGroup(a)">
-        {{a.name}}
+<div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard">    
+    <button class="nbr" 
+     *ngFor="let a of sceneGroups" (click)="onSelectGroup(a)"
+     style="background-color: {{a.color}};">
+        &nbsp;{{a.name}}&nbsp;
     </button>
 </div>
 <!-- myth selector -->
-<div *ngIf="selectedScene">    
+<div *ngIf="selectedScene&&!selectedCard">      
 <!-- clue -->
-<button style="margin: 5px; padding: 5px;" (click)="onClue()">CLUE</button>
+<button (click)="onClue()"><img src="/assets/icons/clue.png"></button>
 <!-- gate -->
-<button style="margin: 5px; padding: 5px;" (click)="onMyth(true)">GATE</button>
+<button (click)="onMyth(true)"><img src="/assets/icons/gate.png"></button>
 <!-- doom -->
-<button style="margin: 5px; padding: 5px;" (click)="onMyth(false)">DOOM</button>
+<button (click)="onMyth(false)"><img src="/assets/icons/doom.png"></button>
+<!-- news -->
+<button (click)="onNews()"><img src="/assets/icons/news.png"></button>
 <!-- panic -->
 <button *ngIf="scenePanic"
-style="margin: 5px; padding: 5px;" 
-(click)="onPanic()">PANIC</button>
+(click)="onPanic()"><img src="/assets/icons/panic.png"></button>
 <!-- discard -->
-<button style="margin: 5px; padding: 5px;" (click)="onDiscard()">DISCARD</button>
+<button (click)="onDiscard()"><img src="/assets/icons/discard.png"></button>
 </div>
 <!-- card show -->
 <div *ngIf="selectedCard">
@@ -47,6 +48,6 @@ style="margin: 5px; padding: 5px;"
         {{selectedCard.groupId}}&nbsp;
         {{selectedCard.sceneId}}
     </p>
-    <button (click)="onRoll(true)">ok</button>
-    <button (click)="onRoll(false)">notok</button>
+    <button class="roll" (click)="onRoll(true)"><img src="/assets/icons/yes.png"></button>
+    <button class="roll" (click)="onRoll(false)"><img src="/assets/icons/no.png"></button>
 </div>
