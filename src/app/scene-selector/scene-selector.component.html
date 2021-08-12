@@ -1,11 +1,11 @@
-<h1 style="margin: auto; text-align: center;">Arkham</h1>
+
 <!-- <div>
     <li *ngFor="let a of groupset">
         {{a.id}}&nbsp;{{a.name}}
     </li>
-</div>
- -->
-<!--  <div>
+</div> -->
+
+ <!-- <div>
     <li *ngFor="let a of sceneset">
         {{a.name}}&nbsp;{{a.groups}}
     </li>
@@ -13,6 +13,7 @@
 
  <!-- scene selector -->
  <div *ngIf="!selectedScene">
+    <h1 style="margin: auto; text-align: center;">Arkham</h1>
     <button class="nbr"
      *ngFor="let a of sceneset" (click)="onSelectScene(a)">
         {{a.name}}
@@ -44,10 +45,11 @@
 </div>
 <!-- card show -->
 <div *ngIf="selectedCard">
+    <img src="assets/cardscans/{{selectedCard.id}}.jpg">
+    <button class="roll" (click)="onRoll(true)"><img src="/assets/icons/yes.png"></button>
+    <button class="roll" (click)="onRoll(false)"><img src="/assets/icons/no.png"></button>
     <p>{{selectedCard.id}}&nbsp;
         {{selectedCard.groupId}}&nbsp;
         {{selectedCard.sceneId}}
     </p>
-    <button class="roll" (click)="onRoll(true)"><img src="/assets/icons/yes.png"></button>
-    <button class="roll" (click)="onRoll(false)"><img src="/assets/icons/no.png"></button>
 </div>
