@@ -52,15 +52,18 @@ export class SceneSelectorComponent implements OnInit {
         this.sceneGroups?.push(g);
       }
     });
+    console.log(this.sceneGroups);
   }
   onSelectGroup(sgp: Group): void {
     this.selectedGroup = sgp;
     this.selectedCard = sgp.cards.shift();
+    console.log(sgp);
   }
   onClue(): void {
-    /* show first, then shuffle in top of right group */
+    /* show first, then shuffle in top of right group */    
     this.selectedCard = this.sceneMyth?.cards.shift();
     this.shuffleInTop(this.selectedCard||this.emptyCard);
+    //console.log(this.sceneMyth);
   }
   onMyth(mode: boolean): void {
     /* for gate show first, for doom show last, then discard */
@@ -95,7 +98,7 @@ export class SceneSelectorComponent implements OnInit {
   }
 
   onRoll(roll: boolean): void {
-    /* myth, panic,new,discard - do nothing */
+    /* myth, panic,new,discard,clue - do nothing */
     
     if (this.selectedGroup && this.selectedCard) {      
       if (this.selectedCard.sceneId > G_LIMIT_SCN) {
@@ -124,9 +127,11 @@ export class SceneSelectorComponent implements OnInit {
   }
 
   getGroupIndex(c: Card): number{
-    var a: number=0;
-    if(this.sceneGroups&&this.selectedGroup){
-      a = this.sceneGroups.indexOf(this.selectedGroup) || 0;
+    var a: number=0;        
+    if(this.sceneGroups){
+      a = this.sceneGroups.indexOf(
+        this.sceneGroups.find((x) => x.id == c.groupId) || this.emptyGroup
+        );
     }    
     return a;
   }
@@ -147,6 +152,8 @@ export class SceneSelectorComponent implements OnInit {
       t.forEach(ae => {
         if(this.sceneGroups) this.sceneGroups[a].cards.unshift(ae);
       });
+      // console.log("groupnum "+a+" ");
+      console.log(this.sceneGroups[a]);
     }
   }
 

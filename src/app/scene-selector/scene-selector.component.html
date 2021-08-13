@@ -46,8 +46,11 @@
 <!-- card show -->
 <div *ngIf="selectedCard">
     <img src="assets/cardscans/{{selectedCard.id}}.jpg">
-    <button class="roll" (click)="onRoll(true)"><img src="/assets/icons/yes.png"></button>
-    <button class="roll" (click)="onRoll(false)"><img src="/assets/icons/no.png"></button>
+    <button class="roll" (click)="onRoll(true)">
+        <img src="/assets/icons/yes.png"></button>
+    <button *ngIf="selectedGroup"
+    class="roll" (click)="onRoll(false)">
+        <img src="/assets/icons/no.png"></button>
     <p>{{selectedCard.id}}&nbsp;
         {{selectedCard.groupId}}&nbsp;
         {{selectedCard.sceneId}}
