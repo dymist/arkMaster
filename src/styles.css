@@ -27,7 +27,8 @@ div{
     border-color: white;
     border-style: solid;
     border-width: 2px;
-    border-radius: .5rem;
+    border-radius: 1rem;
+    position: relative;
 }
 /* all buttons */
 button{    
@@ -52,4 +53,16 @@ border-image-width:20px 20px 20px 20px;
 border-image-outset:0px 0px 0px 0px;
 border-image-repeat:stretch stretch;
 border-image-source:url(assets/border.png);
+}
+
+.counter {   
+    top: 0;
+    right: 0;
+    position: absolute; 
+    font-size: 50%;
+    width: 1.2rem;
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
 }

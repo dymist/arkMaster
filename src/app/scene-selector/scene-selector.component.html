@@ -20,11 +20,13 @@
  </button>
 </div>
 <!-- neighboorhood selector -->
-<div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard">    
+<div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard">
+    <h1 *ngIf="selectedScene">{{selectedScene.name}}</h1>    
     <button class="nbr" 
-     *ngFor="let a of sceneGroups" (click)="onSelectGroup(a)"
-     style="background-color: {{a.color}};">
+     *ngFor="let a of sceneGroups; let i=index" (click)="onSelectGroup(a)"
+     style="background-color: {{a.color}};">     
         &nbsp;{{a.name}}&nbsp;
+        <span class="counter">{{clueCounter[i]}}</span>
     </button>
 </div>
 <!-- myth selector -->

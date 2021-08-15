@@ -24,6 +24,7 @@ export class SceneSelectorComponent implements OnInit {
   sceneNews?: Group;
   scenePanic?: Group;
   discard: Card[] = [];
+  clueCounter: number[] = [];
   /* flags or some */
   selectedScene?: Scene;
   selectedGroup?: Group;
@@ -50,14 +51,23 @@ export class SceneSelectorComponent implements OnInit {
         this.sceneMyth = g;
       } else {
         this.sceneGroups?.push(g);
+        this.clueCounter.push(0);
       }
     });
     console.log(this.sceneGroups);
   }
   onSelectGroup(sgp: Group): void {
     this.selectedGroup = sgp;
-    this.selectedCard = sgp.cards.shift();
+    this.selectedCard = sgp.cards.shift();    
     console.log(sgp);
+    if(this.sceneGroups&&this.selectedCard){      
+      if(this.selectedCard.sceneId>0){
+
+      var a = this.sceneGroups.indexOf(sgp);
+      console.log("selected group index "+a);
+      this.clueCounter[a]=this.clueCounter[a]-1;
+      }
+    }
   }
   onClue(): void {
     /* show first, then shuffle in top of right group */    
@@ -72,6 +82,10 @@ export class SceneSelectorComponent implements OnInit {
     } else {
       this.selectedCard = this.sceneMyth?.cards.pop();
     }
+    this.selectedToDiscard();    
+  }
+
+  selectedToDiscard(): void{
     if (this.selectedCard) this.discard.unshift(this.selectedCard);
     /* shuffle discard on end of myth */
     if (this.sceneMyth?.cards.length == 0) {
@@ -82,6 +96,7 @@ export class SceneSelectorComponent implements OnInit {
       this.discard.push(tdc);
     }
   }
+
   onPanic(): void {
     /* CHANGE LATER FOR OTHER MECHANIC */
     /* show first card, then push back */
@@ -97,6 +112,8 @@ export class SceneSelectorComponent implements OnInit {
     this.selectedCard = this.discard[0];
   }
 
+  
+
   onRoll(roll: boolean): void {
     /* myth, panic,new,discard,clue - do nothing */
     
@@ -104,7 +121,7 @@ export class SceneSelectorComponent implements OnInit {
       if (this.selectedCard.sceneId > G_LIMIT_SCN) {
         /* clue from nbr + discard - shuffle in group */
         if (roll) {
-          this.discard.push(this.selectedCard);
+          this.discard.unshift(this.selectedCard);
         } else {
           this.shuffleInTop(this.selectedCard);
         }
@@ -154,6 +171,7 @@ export class SceneSelectorComponent implements OnInit {
       });
       // console.log("groupnum "+a+" ");
       console.log(this.sceneGroups[a]);
+      this.clueCounter[a]=this.clueCounter[a]+1;
     }
   }
 
