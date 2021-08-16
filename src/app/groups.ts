@@ -434,7 +434,7 @@ export const GROUPS: Group[] =[
         {id:513,groupId:7,sceneId:102},
         {id:514,groupId:4,sceneId:102},
         {id:515,groupId:1,sceneId:102},
-        {id:516,groupId:6,sceneId:102},
+        {id:516,groupId:4,sceneId:102},
         {id:517,groupId:3,sceneId:102},
         {id:518,groupId:4,sceneId:102},
         {id:519,groupId:3,sceneId:102},
@@ -523,10 +523,10 @@ export const GROUPS: Group[] =[
         {id:335,groupId:1,sceneId:105},
         {id:336,groupId:1,sceneId:105},
         {id:337,groupId:1,sceneId:105},
-        {id:338,groupId:11,sceneId:105},
-        {id:339,groupId:11,sceneId:105},
-        {id:340,groupId:11,sceneId:105},
-        {id:341,groupId:11,sceneId:105}
+        {id:338,groupId:9,sceneId:105},
+        {id:339,groupId:9,sceneId:105},
+        {id:340,groupId:9,sceneId:105},
+        {id:341,groupId:9,sceneId:105}
     ], color:"#a6ab9f"},
     {id: 106, name:'Сны о Р\'льехе', cards:[
         {id:164,groupId:10,sceneId:106},

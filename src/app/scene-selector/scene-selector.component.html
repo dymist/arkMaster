@@ -48,6 +48,7 @@
 <!-- card show -->
 <div *ngIf="selectedCard">
     <img src="assets/cardscans/{{selectedCard.id}}.jpg">
+    
     <button class="roll" (click)="onRoll(true)">
         <img src="/assets/icons/yes.png"></button>
     <button *ngIf="selectedGroup"
@@ -57,4 +58,9 @@
         {{selectedCard.groupId}}&nbsp;
         {{selectedCard.sceneId}}
     </p>
+    <button class="nbrTip" 
+     *ngIf="selectedCardGroup"
+     style="background-color: {{selectedCardGroup.color}};">     
+       {{selectedCardGroup.name}}      
+    </button>
 </div>

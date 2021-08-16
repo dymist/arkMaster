@@ -29,6 +29,7 @@ export class SceneSelectorComponent implements OnInit {
   selectedScene?: Scene;
   selectedGroup?: Group;
   selectedCard?: Card;
+  selectedCardGroup?: Group;
   /* ======================== */
 
   onSelectScene(sscn: Scene): void {
@@ -66,14 +67,16 @@ export class SceneSelectorComponent implements OnInit {
       var a = this.sceneGroups.indexOf(sgp);
       console.log("selected group index "+a);
       this.clueCounter[a]=this.clueCounter[a]-1;
+      this.setSelectedCardGroup();
       }
-    }
+    }        
   }
   onClue(): void {
     /* show first, then shuffle in top of right group */    
     this.selectedCard = this.sceneMyth?.cards.shift();
     this.shuffleInTop(this.selectedCard||this.emptyCard);
     //console.log(this.sceneMyth);
+    this.setSelectedCardGroup();
   }
   onMyth(mode: boolean): void {
     /* for gate show first, for doom show last, then discard */
@@ -83,6 +86,7 @@ export class SceneSelectorComponent implements OnInit {
       this.selectedCard = this.sceneMyth?.cards.pop();
     }
     this.selectedToDiscard();    
+    this.setSelectedCardGroup();
   }
 
   selectedToDiscard(): void{
@@ -110,6 +114,7 @@ export class SceneSelectorComponent implements OnInit {
   onDiscard(): void {
     /* show first card, then destroy */
     this.selectedCard = this.discard[0];
+    this.setSelectedCardGroup();
   }
 
   
@@ -141,6 +146,7 @@ export class SceneSelectorComponent implements OnInit {
     /* flag resets */
     this.selectedCard = undefined;
     this.selectedGroup = undefined;
+    this.selectedCardGroup = undefined;
   }
 
   getGroupIndex(c: Card): number{
@@ -151,6 +157,11 @@ export class SceneSelectorComponent implements OnInit {
         );
     }    
     return a;
+  }
+  setSelectedCardGroup(): void{
+    this.selectedCardGroup = this.groupset.find(
+      (x) => x.id == this.selectedCard?.groupId
+      ) || undefined;
   }
 
   shuffleInTop(c: Card): void {
