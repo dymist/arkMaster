@@ -5,6 +5,7 @@ import { GROUPS, G_LIMIT_MYT, G_LIMIT_SCN } from '../groups';
 import { SCENES } from '../scenes';
 import { Card } from '../card';
 import { GroupedObservable } from 'rxjs';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
   selector: 'app-scene-selector',
@@ -15,8 +16,8 @@ export class SceneSelectorComponent implements OnInit {
   /* Database, sort of */
   groupset: Group[] = GROUPS;
   sceneset: Scene[] = SCENES;
-  emptyCard: Card = {id:0,sceneId:0,groupId:0}
-  emptyGroup: Group = {id:0,name:'',cards:[],color:''}
+  emptyCard: Card = {id:0,sceneId:0,groupId:0};
+  emptyGroup: Group = {id:0,name:'',cards:[],color:''};
   /* =====Current state====== */
   /* groups */
   sceneGroups?: Group[];
@@ -25,11 +26,16 @@ export class SceneSelectorComponent implements OnInit {
   scenePanic?: Group;
   discard: Card[] = [];
   clueCounter: number[] = [];
+  sceneArchive: Card[] = [];
   /* flags or some */
   selectedScene?: Scene;
   selectedGroup?: Group;
   selectedCard?: Card;
   selectedCardGroup?: Group;
+  archiveShow: boolean = false;
+  mythShow: boolean = false;
+  cardNum: number = 0;
+  discardCount: number = 0;
   /* ======================== */
 
   onSelectScene(sscn: Scene): void {
@@ -89,8 +95,20 @@ export class SceneSelectorComponent implements OnInit {
     this.setSelectedCardGroup();
   }
 
+  onMythPhase(): void{
+    if(this.mythShow){
+      this.mythShow=false;
+    } else {
+      this.mythShow = true;
+      this.archiveShow = false;
+    }
+  }
+
   selectedToDiscard(): void{
-    if (this.selectedCard) this.discard.unshift(this.selectedCard);
+    if (this.selectedCard) {
+      this.discard.unshift(this.selectedCard);
+    this.discardCount = this.discardCount + 1;
+  }
     /* shuffle discard on end of myth */
     if (this.sceneMyth?.cards.length == 0) {
       var tdc: Card = this.discard.shift()||this.emptyCard;
@@ -98,6 +116,7 @@ export class SceneSelectorComponent implements OnInit {
       this.shuffle(this.sceneMyth.cards);
       this.discard=[];
       this.discard.push(tdc);
+      this.discardCount = 1;
     }
   }
 
@@ -117,7 +136,46 @@ export class SceneSelectorComponent implements OnInit {
     this.setSelectedCardGroup();
   }
 
-  
+  onArchive(): void{
+    if(this.archiveShow){
+      this.archiveShow=false;
+      this.selectedCard=undefined;
+    } else {
+      this.mythShow=false;
+      this.archiveShow=true;
+    }
+  }
+  onArchiveCard(sc: Card): void{
+    if (this.selectedCard) {
+      this.selectedCard = undefined;
+    } else {
+      this.selectedCard = sc;
+    }
+    //this.archiveShow=false;
+  }
+  onFlipArchive(c: Card): void{
+    //flip selected card in archive
+    //flip selected card onscreen
+    if(c.id%2==0){
+      c.id=c.id-1;
+    } else {
+      c.id=c.id+1;
+    }
+  }  
+  addArchiveCard(){
+    //Need rework later==================================
+    this.sceneArchive.push({id:this.cardNum*2-1+1000,sceneId:0,groupId:0});
+  }
+
+  deleteArchiveCard(){
+    var tempArchive: Card[] = [];
+    this.sceneArchive.forEach( aaa =>{
+      if(aaa.id!=this.selectedCard?.id){
+        tempArchive.push(aaa);
+      }
+    })
+    this.sceneArchive = tempArchive;
+  }
 
   onRoll(roll: boolean): void {
     /* myth, panic,new,discard,clue - do nothing */
@@ -141,6 +199,15 @@ export class SceneSelectorComponent implements OnInit {
             this.sceneGroups[a].cards.unshift(this.selectedCard);
           }
         }
+      }
+      //Archive show block logic
+    } else if (this.archiveShow){
+      if(roll){
+      this.onFlipArchive(this.selectedCard||this.sceneArchive[0]);
+      }
+      else{
+        //delete card from archive
+        this.deleteArchiveCard();
       }
     }
     /* flag resets */

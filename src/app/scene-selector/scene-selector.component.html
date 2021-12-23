@@ -11,17 +11,36 @@
     </li>
 </div> -->
 
- <!-- scene selector -->
- <div *ngIf="!selectedScene">
+<!-- scene selector -->
+<div *ngIf="!selectedScene">
     <h1 style="margin: auto; text-align: center;">Arkham</h1>
     <button class="nbr"
      *ngFor="let a of sceneset" (click)="onSelectScene(a)">
         {{a.name}}
  </button>
 </div>
+
+<!-- tabs -->
+<div *ngIf="(sceneGroups&&!selectedGroup&&!selectedCard)||archiveShow||mythShow">
+    <button class="nbr" (click)="onArchive()">&nbsp;Events/Archive&nbsp;</button>
+    <button class="nbr" (click)="onMythPhase()">&nbsp;Events/Myth&nbsp;</button>  
+</div>
+<!-- archive block-->
+<div *ngIf="archiveShow" style="position: relative;">
+    <div>
+        <label for="cardNum">Archive card:</label>
+        <input type="number" id="cardNum" [(ngModel)]="cardNum" placeholder="cardNum">
+        <button class="nbr" style="height: auto; font-size: 75%;" (click)="addArchiveCard()">&nbsp;Add&nbsp;</button>
+    </div>
+    <button *ngFor="let n of sceneArchive" class="arch_card_preview" (click)="onArchiveCard(n)">
+        <img src="assets/cardscans/{{n.id}}.jpg">
+    </button>
+</div>
+ 
+
 <!-- neighboorhood selector -->
-<div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard">
-    <h1 *ngIf="selectedScene">{{selectedScene.name}}</h1>    
+<div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard&&!archiveShow&&!mythShow">
+    <h1 *ngIf="selectedScene">{{selectedScene.name}}</h1>
     <button class="nbr" 
      *ngFor="let a of sceneGroups; let i=index" (click)="onSelectGroup(a)"
      style="background-color: {{a.color}};">     
@@ -30,7 +49,7 @@
     </button>
 </div>
 <!-- myth selector -->
-<div *ngIf="selectedScene&&!selectedCard">      
+<div *ngIf="selectedScene&&!selectedCard&&mythShow">      
 <!-- clue -->
 <button (click)="onClue()"><img src="/assets/icons/clue.png"></button>
 <!-- gate -->
@@ -43,15 +62,18 @@
 <button *ngIf="scenePanic"
 (click)="onPanic()"><img src="/assets/icons/panic.png"></button>
 <!-- discard -->
-<button (click)="onDiscard()"><img src="/assets/icons/discard.png"></button>
+<button (click)="onDiscard()"><img src="/assets/icons/discard.png">
+<!--<div><span class="counter">{{discardCount}}</span></div>-->
+</button>
 </div>
 <!-- card show -->
 <div *ngIf="selectedCard">
-    <img src="assets/cardscans/{{selectedCard.id}}.jpg">
+    <img src="assets/cardscans/{{selectedCard.id}}.jpg" class="cardshow">
+    <br>
     
     <button class="roll" (click)="onRoll(true)">
         <img src="/assets/icons/yes.png"></button>
-    <button *ngIf="selectedGroup"
+    <button *ngIf="selectedGroup||archiveShow"
     class="roll" (click)="onRoll(false)">
         <img src="/assets/icons/no.png"></button>
     <p>{{selectedCard.id}}&nbsp;
@@ -64,3 +86,4 @@
        {{selectedCardGroup.name}}      
     </button>
 </div>
+

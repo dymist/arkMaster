@@ -81,3 +81,31 @@ border-image-source:url(assets/border.png);
     border-color: white;
     border-width: 2px;
 }
+
+.arch_items {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
+}
+.arch_item {
+    position: relative;
+    padding: 0px 0px 85% 0px;
+}
+.arch_item img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.arch_card_preview {
+    width: 13rem;
+    margin: 0;
+}
+
+.cardshow {
+    height: 100vh;
+    width: auto;
+}
