@@ -13,6 +13,7 @@ img {
     width: 100%;
     height: auto;
 }
+
 div{
     text-align: center;
 }
@@ -20,7 +21,7 @@ div{
 /* neighboorhood buttons */
 .nbr {    
     font-family: 'Caslon';
-    font-size: 200%;
+    font-size: 180%;
     width: fit-content;
     height: 5rem;    
     background-color: darkgray;
@@ -29,6 +30,10 @@ div{
     border-width: 2px;
     border-radius: 1rem;
     position: relative;
+}
+.tabs {
+    font-size: 150%;
+    height: 2.5rem;
 }
 .nbrTip {
     font-family: 'Caslon';
@@ -55,11 +60,19 @@ button{
 }
 /* roll buttons */
 .roll{    
-    width: 8rem;
-    margin: 5px;
-    padding: 5px;
-    background: none;
-    border-style: none;
+    width: 45vw;
+    height: 10vh;
+    margin: .1rem;
+    padding: 0px;
+    background: gray;
+    border-style: solid;
+    border-radius: 0.5rem;
+    border-color: honeydew;
+}
+
+.roll img {
+    width: auto;
+    height: 100%;
 }
 
 .bordimg{    
@@ -106,6 +119,7 @@ border-image-source:url(assets/border.png);
 }
 
 .cardshow {
-    height: 100vh;
-    width: auto;
+    max-height: 100vh;
+    width: 100vw;
 }
+

@@ -20,10 +20,10 @@
  </button>
 </div>
 
-<!-- tabs -->
-<div *ngIf="(sceneGroups&&!selectedGroup&&!selectedCard)||archiveShow||mythShow">
-    <button class="nbr" (click)="onArchive()">&nbsp;Events/Archive&nbsp;</button>
-    <button class="nbr" (click)="onMythPhase()">&nbsp;Events/Myth&nbsp;</button>  
+<!-- tabs (sceneGroups&&!selectedGroup&&!selectedCard)||((archiveShow||mythShow) -->
+<div *ngIf="sceneGroups&&!selectedCard">
+    <button class="nbr tabs" (click)="onArchive()">&nbsp;Archive&nbsp;</button>
+    <button class="nbr tabs" (click)="onMythPhase()">&nbsp;Myth&nbsp;</button>  
 </div>
 <!-- archive block-->
 <div *ngIf="archiveShow" style="position: relative;">
@@ -67,19 +67,19 @@
 </button>
 </div>
 <!-- card show -->
-<div *ngIf="selectedCard">
+<div *ngIf="selectedCard" style="margin: 0; padding: 0;">
     <img src="assets/cardscans/{{selectedCard.id}}.jpg" class="cardshow">
     <br>
-    
     <button class="roll" (click)="onRoll(true)">
         <img src="/assets/icons/yes.png"></button>
     <button *ngIf="selectedGroup||archiveShow"
     class="roll" (click)="onRoll(false)">
         <img src="/assets/icons/no.png"></button>
-    <p>{{selectedCard.id}}&nbsp;
+    
+    <!-- <p>{{selectedCard.id}}&nbsp;
         {{selectedCard.groupId}}&nbsp;
         {{selectedCard.sceneId}}
-    </p>
+    </p> -->
     <button class="nbrTip" 
      *ngIf="selectedCardGroup"
      style="background-color: {{selectedCardGroup.color}};">     
