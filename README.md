@@ -26,9 +26,27 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## LAST DONE:
-- Add|del archive cards +
-- TAB3 division: archive, contacts, myth +
+## PATCH NOTES:
+2021
+- (new) base version
+- (new) Add|del archive cards
+- (new) TAB3 division: archive, contacts, myth 
+2022.02.14
+- (fix) got clue from nbr but DC not updated 
+- (fix) rules guided discard shuffle
+- (fix) discard icon now shows unstable region
+
 
 ## TODO:
-- Mobile screen 18.5x9 16x9 21x9
+- change icons to svg
+- redesign
+- Add counter to discard 
+- Add myth counter
+- Check scenes which can add eventcards or nbr
+- change display mode for image to overlay?
+- scene randomizer
+- panic card call mechanic + counter
+- break by components
+- Adaptive visual Mobile screen 18.5x9 16x9 21x9
+
+
