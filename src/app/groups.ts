@@ -326,6 +326,14 @@ export const GROUPS: Group[] =[
         {id:481,groupId:21,sceneId:0},
         {id:482,groupId:21,sceneId:0}
     ], color:"#dcd7b0"},
+    {id: 22, name:'Эхо Гибели', cards:[
+        {id:598,groupId:22,sceneId:0},
+        {id:599,groupId:22,sceneId:0},
+        {id:600,groupId:22,sceneId:0},
+        {id:601,groupId:22,sceneId:0},
+        {id:602,groupId:22,sceneId:0},
+        {id:603,groupId:22,sceneId:0}
+    ], color:"#dcd7b0"},
     {id: 201, name:'Газеты', cards:[
         {id:219,groupId:201,sceneId:0},
         {id:220,groupId:201,sceneId:0},
@@ -667,6 +675,20 @@ export const GROUPS: Group[] =[
         {id:504,groupId:1,sceneId:110},
         {id:505,groupId:1,sceneId:110},
         {id:506,groupId:1,sceneId:110}
+    ], color:"#a6ab9f"},
+    {id: 111, name:'Гнев Нитокрис', cards:[
+        {id:604,groupId:3,sceneId:111},
+        {id:605,groupId:3,sceneId:111},
+        {id:606,groupId:1,sceneId:111},
+        {id:607,groupId:1,sceneId:111},
+        {id:608,groupId:1,sceneId:111},
+        {id:609,groupId:4,sceneId:111},
+        {id:610,groupId:4,sceneId:111},
+        {id:611,groupId:2,sceneId:111},
+        {id:612,groupId:2,sceneId:111},
+        {id:613,groupId:6,sceneId:111},
+        {id:614,groupId:6,sceneId:111},
+        {id:615,groupId:6,sceneId:111}
     ], color:"#a6ab9f"},
     {id: 1000, name: 'Архив', cards:[
         {id:1001,groupId:0,sceneId:0},

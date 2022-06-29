@@ -1,1 +1,16 @@
-<app-scene-selector></app-scene-selector>
+
+
+<div class="appContainer">
+    <div *ngIf="screen==0">
+    <h1 style="margin: auto; text-align: center;">Ужас Аркхэма</h1>
+    <h2 style="margin: auto; text-align: center;">3-я редакция</h2>
+    <ul>
+    <li class="nbrli" (click)="startNewGame()">&nbsp;Новая игра&nbsp;</li>
+    <li class="nbrli" style="border-style: dotted;">&nbsp;Продолжить&nbsp;</li>
+    <li class="nbrli" style="border-style: dotted;">&nbsp;Загрузить&nbsp;</li>
+    <li class="nbrli" style="border-style: dotted;">&nbsp;Коллекция&nbsp;</li>
+    <li class="nbrli" style="border-style: dotted;">&nbsp;Как играть?&nbsp;</li>
+</ul>
+</div>
+    <app-scene-selector *ngIf="screen!=0"></app-scene-selector>
+</div>

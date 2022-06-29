@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'arkMaster';
+  screen:number=0;
+
+  startNewGame():void{
+    this.screen=1;
+  }
+  loadGame():void{
+    this.screen=2;
+  }
+  openSettings():void{
+    this.screen=1;
+  }
 }

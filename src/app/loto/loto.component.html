@@ -1,0 +1,13 @@
+
+
+<div>
+<!-- <p style="text-align: center;">loto works!</p> -->
+<button *ngFor="let n of lotolist" (click)="selectNum(n)" class="achnum">
+    {{n}}
+</button>
+<button (click)="selectNum(0)" class="achnum">
+    Х
+</button>
+<!-- <p>{{selectedNum}}</p> -->
+<!-- <p>{{lotolist}}</p> -->
+</div>

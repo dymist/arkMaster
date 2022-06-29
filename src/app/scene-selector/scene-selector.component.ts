@@ -21,8 +21,8 @@ export class SceneSelectorComponent implements OnInit {
   /* =====Current state====== */
   /* groups */
   sceneGroups?: Group[];
-  sceneMyth?: Group;
-  sceneNews?: Group;
+  sceneMyth: Group = this.emptyGroup;
+  sceneNews: Group = this.emptyGroup;
   scenePanic?: Group;
   discard: Card[] = [];
   clueCounter: number[] = [];
@@ -31,13 +31,21 @@ export class SceneSelectorComponent implements OnInit {
   selectedScene?: Scene;
   selectedGroup?: Group;
   selectedCard?: Card;
+  unstableRegion?: Card;
   selectedCardGroup?: Group;
   archiveShow: boolean = false;
   mythShow: boolean = false;
   cardNum: number = 0;
   discardCount: number = 0;
+  eventCount: number = 0;
+  /* ======================== */
+  numlist: number[]= [1,2,3,4,5];
+  showArchPool: boolean = false;
   /* ======================== */
 
+  /*===============================
+  Начало игры с выбором сцены
+  ===============================*/
   onSelectScene(sscn: Scene): void {
     this.selectedScene = sscn;
     /* form scene group collection*/
@@ -51,7 +59,7 @@ export class SceneSelectorComponent implements OnInit {
       /* add group in right place */
       if (g.id == 201) {
         this.sceneNews = g;
-        this.sceneNews.cards = g.cards.slice(0, 12);
+        this.sceneNews.cards = g.cards.slice(0, 13);
       } else if (g.id > G_LIMIT_MYT) {
         this.scenePanic = g;
       } else if (g.id > G_LIMIT_SCN) {
@@ -62,7 +70,13 @@ export class SceneSelectorComponent implements OnInit {
       }
     });
     console.log(this.sceneGroups);
+    this.numlist = this.selectedScene.codex;    
   }
+
+  onSelectRandomScene():void{
+    this.onSelectScene(this.sceneset[Math.floor(Math.random() * this.sceneset.length)]);
+  }
+
   onSelectGroup(sgp: Group): void {
     this.selectedGroup = sgp;
     this.selectedCard = sgp.cards.shift();    
@@ -77,22 +91,39 @@ export class SceneSelectorComponent implements OnInit {
       }
     }        
   }
+  //if gate - shuffle discard and add to pool, if no cards - alert then shuffle discard
   onClue(): void {
-    /* show first, then shuffle in top of right group */    
+    /* show first, then shuffle in top of right group */
+    
+    if(this.sceneMyth?.cards.length==0){
+      alert("Положите жетон безысходности на лист сценария");
+      this.shuffleDiscard();
+    }
+    else {    
     this.selectedCard = this.sceneMyth?.cards.shift();
     this.shuffleInTop(this.selectedCard||this.emptyCard);
     //console.log(this.sceneMyth);
     this.setSelectedCardGroup();
+    }
+    this.eventCount = this.sceneMyth?.cards.length || 0 ;
   }
   onMyth(mode: boolean): void {
     /* for gate show first, for doom show last, then discard */
+    if (this.sceneMyth?.cards.length==0){
+      alert("Положите жетон безысходности на лист сценария");
+      this.shuffleDiscard();
+    } else {
     if (mode) {
       this.selectedCard = this.sceneMyth?.cards.shift();
+      this.selectedToDiscard();
+      this.shuffleDiscard();
     } else {
       this.selectedCard = this.sceneMyth?.cards.pop();
+      this.selectedToDiscard();
     }
-    this.selectedToDiscard();    
     this.setSelectedCardGroup();
+  }
+  this.eventCount = this.sceneMyth?.cards.length || 0 ;
   }
 
   onMythPhase(): void{
@@ -107,17 +138,32 @@ export class SceneSelectorComponent implements OnInit {
   selectedToDiscard(): void{
     if (this.selectedCard) {
       this.discard.unshift(this.selectedCard);
-    this.discardCount = this.discardCount + 1;
+    this.discardCount = this.discard.length;
   }
-    /* shuffle discard on end of myth */
+  //setunstable region
+  this.unstableRegion=this.selectedCard;
+  }
+
+  shuffleDiscard(): void{
+    //save last card in discard
+    //shuffle discard
+    //add discard to myth
     if (this.sceneMyth?.cards.length == 0) {
-      var tdc: Card = this.discard.shift()||this.emptyCard;
+      //var tdc: Card = this.discard.shift()||this.emptyCard;
       this.sceneMyth.cards = this.discard;
       this.shuffle(this.sceneMyth.cards);
       this.discard=[];
-      this.discard.push(tdc);
-      this.discardCount = 1;
+      //this.discard.push(tdc);
+      //this.discardCount = 0;
     }
+    else {
+      if(this.sceneMyth?.cards){
+        this.shuffle(this.discard);
+        this.sceneMyth.cards = this.sceneMyth.cards.concat(this.discard);
+        this.discard=[];
+      }
+    }
+    this.discardCount = 0;
   }
 
   onPanic(): void {
@@ -132,7 +178,7 @@ export class SceneSelectorComponent implements OnInit {
   }
   onDiscard(): void {
     /* show first card, then destroy */
-    this.selectedCard = this.discard[0];
+    this.selectedCard = this.unstableRegion;
     this.setSelectedCardGroup();
   }
 
@@ -163,8 +209,26 @@ export class SceneSelectorComponent implements OnInit {
     }
   }  
   addArchiveCard(){
-    //Need rework later==================================
-    this.sceneArchive.push({id:this.cardNum*2-1+1000,sceneId:0,groupId:0});
+    if(this.cardNum==0){
+      this.showArchPool=false;
+    } else {
+      if(this.sceneArchive.find((x)=> x.id == this.cardNum*2-1+1000 || x.id == this.cardNum*2+1000) === undefined){
+        this.sceneArchive.push({id:this.cardNum*2-1+1000,sceneId:0,groupId:0});
+      } 
+    }
+  }
+  
+  addArchiveCardEvent(acn: number){
+    this.cardNum=acn;
+    this.addArchiveCard();
+  }
+
+  showArchivePool(){
+    if(this.showArchPool){
+      this.showArchPool=false;
+    } else {
+      this.showArchPool=true;
+    }
   }
 
   deleteArchiveCard(){
@@ -184,7 +248,7 @@ export class SceneSelectorComponent implements OnInit {
       if (this.selectedCard.sceneId > G_LIMIT_SCN) {
         /* clue from nbr + discard - shuffle in group */
         if (roll) {
-          this.discard.unshift(this.selectedCard);
+          this.selectedToDiscard();
         } else {
           this.shuffleInTop(this.selectedCard);
         }
@@ -251,6 +315,16 @@ export class SceneSelectorComponent implements OnInit {
       console.log(this.sceneGroups[a]);
       this.clueCounter[a]=this.clueCounter[a]+1;
     }
+  }
+
+  resetGame():void{
+    this.selectedScene=undefined;
+    this.discard=[];
+    this.selectedCard = undefined;
+    this.selectedGroup = undefined;
+    this.selectedCardGroup = undefined;
+    this.sceneGroups = undefined;
+    this.archiveShow=false;
   }
 
   /* shuffle array function (taken from SO, then made generic)*/

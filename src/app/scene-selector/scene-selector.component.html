@@ -1,74 +1,101 @@
-
-<!-- <div>
-    <li *ngFor="let a of groupset">
-        {{a.id}}&nbsp;{{a.name}}
-    </li>
-</div> -->
-
- <!-- <div>
-    <li *ngFor="let a of sceneset">
-        {{a.name}}&nbsp;{{a.groups}}
-    </li>
-</div> -->
-
-<!-- scene selector -->
+<!-- ====================== -->
+<!-- Scene selection block -->
+<!-- ====================== -->
 <div *ngIf="!selectedScene">
-    <h1 style="margin: auto; text-align: center;">Arkham</h1>
-    <button class="nbr"
-     *ngFor="let a of sceneset" (click)="onSelectScene(a)">
-        {{a.name}}
- </button>
+    <h1 style="margin: auto; text-align: center;">Выберите сценарий:</h1>
+    <ul>
+        <li class="nbrli"
+        *ngFor="let a of sceneset" (click)="onSelectScene(a)">
+            &nbsp;{{a.name}}&nbsp;
+        </li>
+        <li class="nbrli"
+        (click)="onSelectRandomScene()">
+            &nbsp;Случайный сценарий&nbsp;
+        </li>
+    </ul>
 </div>
 
+<!-- ====================== -->
+<!-- Tab selection block -->
+<!-- ====================== -->
 <!-- tabs (sceneGroups&&!selectedGroup&&!selectedCard)||((archiveShow||mythShow) -->
 <div *ngIf="sceneGroups&&!selectedCard">
-    <button class="nbr tabs" (click)="onArchive()">&nbsp;Archive&nbsp;</button>
-    <button class="nbr tabs" (click)="onMythPhase()">&nbsp;Myth&nbsp;</button>  
+    <button class="nbr tabs" (click)="onArchive()">&nbsp;АРХИВ&nbsp;</button>
+    <button class="nbr tabs" (click)="onMythPhase()">&nbsp;МИФ&nbsp;</button>
+    <button class="nbr tabs" style="border-style: dotted;">&nbsp;???&nbsp;</button>
+    <button class="nbr tabs" (click)="resetGame()">&nbsp;Выход&nbsp;</button>
+    <!-- <button class="nbr tabs">&nbsp;Reset&nbsp;</button>
+    <button class="nbr tabs">&nbsp;Save&nbsp;</button>   -->
 </div>
-<!-- archive block-->
+
+<!-- ====================== -->
+<!-- Archive block          -->
+<!-- ====================== -->
 <div *ngIf="archiveShow" style="position: relative;">
-    <div>
-        <label for="cardNum">Archive card:</label>
-        <input type="number" id="cardNum" [(ngModel)]="cardNum" placeholder="cardNum">
-        <button class="nbr" style="height: auto; font-size: 75%;" (click)="addArchiveCard()">&nbsp;Add&nbsp;</button>
-    </div>
+
+    <app-loto *ngIf="showArchPool" [lotolist]="numlist" (selcodcard)="addArchiveCardEvent($event)"></app-loto> <!-- codex card add module -->
+
+    <button class="arch_card_preview" (click)="showArchivePool()">
+        <img src="assets/cardscans/1122.jpg">
+    </button>
     <button *ngFor="let n of sceneArchive" class="arch_card_preview" (click)="onArchiveCard(n)">
         <img src="assets/cardscans/{{n.id}}.jpg">
     </button>
+    <br>
+    <div>
+        <label for="cardNum">Номер карты:</label>
+        <input type="number" id="cardNum" [(ngModel)]="cardNum" placeholder="cardNum">
+        <button class="nbr" style="height: auto; font-size: 75%;" (click)="addArchiveCard()">&nbsp;Добавить&nbsp;</button>
+    </div>
 </div>
- 
 
-<!-- neighboorhood selector -->
+<!-- ====================== -->
+<!-- Neighboorhood selection block -->
+<!-- ====================== -->
 <div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard&&!archiveShow&&!mythShow">
     <h1 *ngIf="selectedScene">{{selectedScene.name}}</h1>
-    <button class="nbr" 
+    <ul>
+    <li class="nbrli" 
      *ngFor="let a of sceneGroups; let i=index" (click)="onSelectGroup(a)"
      style="background-color: {{a.color}};">     
         &nbsp;{{a.name}}&nbsp;
         <span class="counter">{{clueCounter[i]}}</span>
-    </button>
+    </li>
+</ul>
 </div>
-<!-- myth selector -->
+
+<!-- ====================== -->
+<!-- Myth token effect selection tool -->
+<!-- ====================== -->
 <div *ngIf="selectedScene&&!selectedCard&&mythShow">      
 <!-- clue -->
-<button (click)="onClue()"><img src="/assets/icons/clue.png"></button>
+<button (click)="onClue()"><img src="/assets/icons/clue.png">
+    <span class="deckCounter">{{sceneMyth.cards.length}}</span></button>
 <!-- gate -->
-<button (click)="onMyth(true)"><img src="/assets/icons/gate.png"></button>
+<button (click)="onMyth(true)"><img src="/assets/icons/gate.png">
+    <span class="deckCounter">{{sceneMyth.cards.length}}</span></button>
 <!-- doom -->
-<button (click)="onMyth(false)"><img src="/assets/icons/doom.png"></button>
+<button (click)="onMyth(false)"><img src="/assets/icons/doom.png">
+    <span class="deckCounter">{{sceneMyth.cards.length}}</span></button>
 <!-- news -->
-<button (click)="onNews()"><img src="/assets/icons/news.png"></button>
+<button (click)="onNews()"><img src="/assets/icons/news.png">
+    <span class="deckCounter">{{sceneNews.cards.length}}</span></button>
 <!-- panic -->
 <button *ngIf="scenePanic"
 (click)="onPanic()"><img src="/assets/icons/panic.png"></button>
 <!-- discard -->
-<button (click)="onDiscard()"><img src="/assets/icons/discard.png">
-<!--<div><span class="counter">{{discardCount}}</span></div>-->
+<button (click)="onDiscard()" style="position: relative;"><img src="/assets/icons/discard.png">
+<!-- <span class="discardCounter">{{discardCount}}</span> -->
+<span class="deckCounter">{{discard.length}}</span>
 </button>
 </div>
-<!-- card show -->
-<div *ngIf="selectedCard" style="margin: 0; padding: 0;">
-    <img src="assets/cardscans/{{selectedCard.id}}.jpg" class="cardshow">
+
+<!-- ====================== -->
+<!-- Card show block -->
+<!-- ====================== -->
+
+<div *ngIf="selectedCard" style="margin: 0; padding: 0;" class="cardShowBlock">
+    <img src="assets/cardscans/{{selectedCard.id}}.jpg">
     <br>
     <button class="roll" (click)="onRoll(true)">
         <img src="/assets/icons/yes.png"></button>
@@ -82,8 +109,46 @@
     </p> -->
     <button class="nbrTip" 
      *ngIf="selectedCardGroup"
-     style="background-color: {{selectedCardGroup.color}};">     
+     style="background-color: {{selectedCardGroup.color}};">
        {{selectedCardGroup.name}}      
     </button>
 </div>
 
+<!-- ====================== -->
+<!-- Debug code block       -->
+<!-- ====================== -->
+
+<!-- ====================== -->
+<!-- Depricated code block  -->
+<!-- ====================== -->
+<!-- <div *ngIf="sceneGroups&&!selectedGroup&&!selectedCard&&!archiveShow&&!mythShow">
+    <h1 *ngIf="selectedScene">{{selectedScene.name}}</h1>
+    <button class="nbr" 
+     *ngFor="let a of sceneGroups; let i=index" (click)="onSelectGroup(a)"
+     style="background-color: {{a.color}};">     
+        &nbsp;{{a.name}}&nbsp;
+        <span class="counter">{{clueCounter[i]}}</span>
+    </button>
+</div> -->
+
+<!-- <div>EC {{eventCount}} DC {{discardCount}}</div> -->
+<!-- <div>
+    <li *ngFor="let a of groupset">
+        {{a.id}}&nbsp;{{a.name}}
+    </li>
+</div> -->
+
+ <!-- <div>
+    <li *ngFor="let a of sceneset">
+        {{a.name}}&nbsp;{{a.groups}}
+    </li>
+</div> -->
+
+<!-- scene selector -->
+<!-- <div *ngIf="!selectedScene">
+    <h1 style="margin: auto; text-align: center;">Arkham</h1>
+    <button class="nbr"
+     *ngFor="let a of sceneset" (click)="onSelectScene(a)">
+        {{a.name}}
+ </button>
+</div> -->
